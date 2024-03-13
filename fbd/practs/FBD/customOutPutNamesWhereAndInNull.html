@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T02B&desde=1&hasta=999&lang=eng -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
+        <title>T02B Soluciones a los ejercicios</title>
+    </head>
+    <body>
+        <h3>Solutions</h3><p><a href="https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T02B&amp;desde=1&amp;hasta=999&amp;lang=es">Español</a></p><h3>T02B.001- Code, name and retail price of the articles of less than 100€; the output must be code, name,"has a price of",rrp</h3><blockquote><pre>select cod,name,'has the price of',rrp from article where rrp &lt; 100</pre><hr></blockquote><br><h3>T02B.002- DNI, email, name and surnames of the users of the Asturias province (code 33)</h3><blockquote><pre>select dni,email,name,surnames 
+from uuser
+where province='33';</pre><blockquote>Alternative: <br><pre>select dni,email,u.name,surnames 
+from uuser u, province pv
+where u.province=codp and pv.name='Asturias';</pre></blockquote><hr></blockquote><br><h3>T02B.003- All the information (code and name) of the provinces that have users.</h3><blockquote><pre>select pv.* 
+from uuser u, province pv
+where u.province=codp;</pre><hr></blockquote><br><h3>T02B.004- All the information (code and name) of the provinces that have users, avoiding duplicates and sorted by name.</h3><blockquote><pre>select distinct pv.* 
+from uuser u, province pv
+where u.province=codp
+order by pv.name;</pre><blockquote>Alternative: <br><pre>select distinct pv.* 
+from uuser u, province pv
+where u.province=codp
+order by 2;</pre></blockquote><hr></blockquote><br><h3>T02B.005- Email of the users of Murcia province that have no phone, with a message in the output like "They don't have phone".</h3><blockquote><pre>select email,'No telephone number' 
+from uuser u, province pv
+where u.province=codp and pv.name = 'Murcia'
+and telephone is null;</pre><hr></blockquote><br><h3>T02B.006- Articles that have no brand</h3><blockquote><pre>select * from article where brand is null</pre><hr></blockquote><br><h3>T02B.007- Code and name of the articles with a price between 400 and 500 euros</h3><blockquote><pre>select cod,name from article where rrp between 400 and 500;</pre><blockquote>Alternative: <br><pre>select cod,name from article where rpp &gt;= 400 and rpp &lt;= 500;</pre></blockquote><hr></blockquote><br><h3>T02B.008- Code and name of the articles with price 415, 129, 1259 or 3995.</h3><blockquote><pre>select cod,name from article 
+where rrp in (415, 129, 1259, 3995);</pre><blockquote>Alternative: <br><pre>select cod,name from article 
+where rpp = 415 or rpp = 129 or rpp = 1259 or rpp = 3995;</pre></blockquote><hr></blockquote><br><h3>T02B.009- Code, name, brand, rrp and price of the articles requested in order number 1.</h3><blockquote><pre>select article,name,brand,rrp,price
+from linorder l, article a
+where numOrder=1
+and a.cod=l.article</pre><hr></blockquote><br><h3>T02B.010- Code, name, brand, rrp and price of the articles requested in order number 1, that are tv</h3><blockquote><pre>select article,name,brand,rrp,price
+from linorder l, article a, tv t
+where numOrder=1
+and a.cod=l.article
+and a.cod=t.cod</pre><hr></blockquote><br><h3>T02B.011- Date and user of the order, code, name, brand, rrp and price of the articles requested in order number 1 that are tv</h3><blockquote><pre>select date,user,article,name,brand,rrp,price
+from linorder l, article a, tv t, orrder p
+where l.numOrder=1 and l.numOrder = p.numOrder
+and a.cod=l.article
+and a.cod=t.cod</pre><hr></blockquote><br><h3>T02B.012- Code, sensor and screen of the cameras, if "screen" has a value, descending sorted by code;</h3><blockquote><pre>select cod,sensor,screen 
+from camera 
+where screen is not null order by cod desc;</pre><hr></blockquote><br><h3>T02B.014- Name of provinces in where users that have requested any order live, avoiding duplicates.</h3><blockquote><pre>select distinct p.name 
+from uuser u, province p, orrder pe 
+where u.province=p.codp and u.email=pe.user;
+</pre><hr></blockquote><br><h3>T02B.020- Code and name of the provinces that are not neither Huelva, Sevilla, Asturias nor Barcelona</h3><blockquote><pre>select codp,name from province 
+where name not in ('huelva', 'sevilla', 'asturias', 'barcelona');</pre><blockquote>Alternative: <br><pre>select codp,name from province 
+where name != 'huelva' and name != 'sevilla' 
+  and name != 'asturias'and name != 'barcelona';</pre></blockquote><hr></blockquote><br>    
+
+</body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T02&desde=1&hasta=999&lang=eng -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
+        <title>T02 Soluciones a los ejercicios</title>
+    </head>
+    <body>
+        <h3>Solutions</h3><p><a href="https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T02&amp;desde=1&amp;hasta=999&amp;lang=es">Español</a></p><h3>T02.001- Get all the information of users.</h3><blockquote><pre>select * from uuser;</pre><hr></blockquote><br><h3>T02.002- List the emails and name and surnames of the users.</h3><blockquote><pre>select email,name,surnames from uuser</pre><hr></blockquote><br><h3>T02.003- List the emails and name and surnames of the users, sorted by email.</h3><blockquote><pre>select email,name,surnames 
+from uuser 
+order by email;</pre><hr></blockquote><br><h3>T02.004- List the emails and name and surnames of the users, sorted by surnames and name</h3><blockquote><pre>select email,name,surnames 
+from uuser 
+order by surnames,name;</pre><hr></blockquote><br><h3>T02.005- List the emails and name and surnames of the users, ascending sorted by surnames and descending by  name</h3><blockquote><pre>select email,name,surnames 
+from uuser 
+order by surnames,name desc;</pre><hr></blockquote><br><h3>T02.006- List the emails, name and surnames of users, descending sorted by surnames and name</h3><blockquote><pre>select email,name,surnames 
+from uuser 
+order by surnames desc, name desc;</pre><hr></blockquote><br><h3>T02.011- Brands</h3><blockquote><pre>select * from brand;</pre><hr></blockquote><br><h3>T02.016- Code and retail price of the articles requested in order number 1.</h3><blockquote><pre>select article,price
+from linorder
+where numOrder=1</pre><hr></blockquote><br><h3>T02.023- Panel of the televisions of 21 inches or less, avoiding duplicates</h3><blockquote><pre>select distinct panel
+from tv
+where screen &lt;= 21;</pre><hr></blockquote><br><h3>T02.024- Code, name, brand and retail price of the articles that have the rrp between 350 and 450.</h3><blockquote><pre>select cod, name, brand, rrp
+from article
+where rrp &gt;=350 and rrp &lt;= 450;</pre><hr></blockquote><br><h3>T02.025- Code, name and retail price of the articles with no brand.</h3><blockquote><pre>select cod,name,rrp from article where brand is null;</pre><hr></blockquote><br><h3>T02.026- Code, name and retail price of the articles with no rpp but brand is Sigma.</h3><blockquote><pre>select cod,name,rrp
+from article 
+where rrp is null and brand='Sigma';</pre><hr></blockquote><br><h3>T02.027- Email, name, surnames and telephone of users with name Santiago, Wencesalo or Sergio.</h3><blockquote><pre>select email,name,surnames,telephone 
+from uuser 
+where name = 'SANTIAGO' OR name = 'WENCESLAO' OR name = 'SERGIO';</pre><hr></blockquote><br><h3>T02.028- Email, name, surnames and telephone of users with name Santiago, Wencesalo or Sergio, and they have telephone number.</h3><blockquote><pre>select email,name,surnames,telephone 
+from uuser 
+where (name = 'SANTIAGO' OR name = 'WENCESLAO' OR name = 'SERGIO') 
+      and telephone is not null;</pre><hr></blockquote><br>    
+
+</body></html>

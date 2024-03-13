@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T04&desde=1&hasta=999&lang=eng -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
+        <title>T04 Soluciones a los ejercicios</title>
+    </head>
+    <body>
+        <h3>Solutions</h3><p><a href="https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T04&amp;desde=1&amp;hasta=999&amp;lang=es">Español</a></p><h3>T04.001- All the information of orders previous to October 2010</h3><blockquote><pre>select * from orrder where date &lt; '2010-10-01';</pre><hr></blockquote><br><h3>T04.002- All the information of orders later than August 2010.</h3><blockquote><pre>select * from orrder where date &gt; '2010-08-31';</pre><hr></blockquote><br><h3>T04.003- All the information of orders between August and October 2010.</h3><blockquote><pre>select * from orrder where date &gt; '2010-07-31' and date &lt; '2010-11-01';</pre><blockquote>Alternative: <br><pre>select * from orrder where date between '2010-08-01' and '2010-10-30';</pre></blockquote><hr></blockquote><br><h3>T04.004- All the information of orders requested 3rd March or 27th October 2010</h3><blockquote><pre>select * from orrder where date = '2010-03-03' or date = '2010-10-27';</pre><hr></blockquote><br><h3>T04.005- Which is the date of today and the time?</h3><blockquote><pre>select now();</pre><hr></blockquote><br><h3>T04.006- Codes of articles requested in 2010, avoiding duplicates and ascending sorted.</h3><blockquote><pre>select distinct article
+from linorder l, orrder p
+where l.numOrder=p.numOrder 
+  and year(date)=2010  
+order by article;</pre><blockquote>Alternative: <br><pre>select distinct article
+from linorder l, orrder p
+where l.numOrder=p.numOrder 
+  and date between '2010-01-01' and '2010-12-31'  
+order by article;</pre></blockquote><hr></blockquote><br><h3>T04.007- Codes of articles requested in March 2010, avoiding duplicates and ascending sorted.</h3><blockquote><pre>select distinct article
+from linorder l, orrder p
+where l.numOrder=p.numOrder 
+  and month(date)=3 and year(date)=2010  
+order by article;</pre><blockquote>Alternative: <br><pre>select distinct article
+from linorder l, orrder p
+where l.numOrder=p.numOrder 
+  and date between '2010-03-01' and '2010-03-31'  
+order by article;</pre></blockquote><hr></blockquote><br><h3>T04.008- All data of UUSERs born in March of any year.</h3><blockquote><pre>select * from uuser where month(nacido)=3</pre><hr></blockquote><br>    
+
+</body></html>

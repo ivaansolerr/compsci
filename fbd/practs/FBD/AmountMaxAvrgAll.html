@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T08&desde=1&hasta=999&lang=eng -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
+        <title>T08 Soluciones a los ejercicios</title>
+    </head>
+    <body>
+        <h3>Solutions</h3><p><a href="https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T08&amp;desde=1&amp;hasta=999&amp;lang=es">Español</a></p><h3>T08.001- Get the total price per line for the order number 1, in the output we will obtain the columns line, article and the calculated field total.</h3><blockquote><pre>select line, article, (price*amount) total 
+from linorder 
+where numPedido=1;</pre><hr></blockquote><br><h3>T08.002- Get the amount of distinct provinces of users that we know.</h3><blockquote><pre>select count(distinct province) provinces from uuser;</pre><hr></blockquote><br><h3>T08.003- Amount of users of our database.</h3><blockquote><pre>select count(*) users from uuser;</pre><hr></blockquote><br><h3>T08.004- Number of articles with RPP greater than 200 euros.</h3><blockquote><pre>select count(*) from article where rrp&gt;200;</pre><hr></blockquote><br><h3>T08.005- Total in euros of the basket of the user "bmm@agwab.com"</h3><blockquote><pre>select sum(rrp) total 
+from basket, article 
+where user='bmm@agwab.com' and article=cod;</pre><hr></blockquote><br><h3>T08.006- Maximum screen size for televisions.</h3><blockquote><pre>select MAX(screen) maxPantalla from tv;</pre><hr></blockquote><br><h3>T08.007- Average distinct retail prices for the articles, rounded to 2 decimals.</h3><blockquote><pre>select round(avg(distinct rrp),2) mediaventa from article;</pre><hr></blockquote><br><h3>T08.008- Name and price of the articles with the minimum available stock.</h3><blockquote><pre>select name,rrp 
+from article,stock 
+where cod=article 
+  and available = (select min(available) from stock);</pre><hr></blockquote><br><h3>T08.009- Number of order, date and name and surnames of the users of the order lines whose total in euros is the highest.</h3><blockquote><pre>select p.numPedido,date,name,surnames 
+from orrder p,linorder l,uuser u 
+where p.user=email 
+ &nbsp;and p.numPedido=l.numPedido 
+ &nbsp;and (amount*price)=(select max(amount*price) from linorder);</pre><hr></blockquote><br><h3>T08.010- Maximum, minumum and average of price of the articles.</h3><blockquote><pre>select MAX(rrp) maxPvp, MIN(rrp) minPvp, AVG(rrp) mediaPvp from article;</pre><hr></blockquote><br><h3>T08.011- Code, name, rrp and date of incorporation of the article to the most recent basket.</h3><blockquote><pre>select cod, name, rrp, date
+from basket, article 
+where article=cod 
+  and date=(select MAX(date) from basket);</pre><hr></blockquote><br><h3>T08.012- Amount of articles that are unlisted.</h3><blockquote><pre>select count(*) NumArtUnlisteds 
+from stock 
+where delivery='Unlisted'</pre><hr></blockquote><br><h3>T08.013- Maximum prices of the article in stock that will be delivered shortly.</h3><blockquote><pre>select max(rrp) 
+from article, stock 
+where cod=article 
+  and delivery='Shortly';</pre><hr></blockquote><br><h3>T08.014- Name, code and availability in stock for all the articles whose code finish with 3, beind this availability the minimum of all the table.</h3><blockquote><pre>select name, cod, available MinDisponible 
+from stock, article 
+where article=cod 
+  and cod like '%3' 
+  and available=(select MIN(available) from stock);</pre><hr></blockquote><br><h3>T08.015- Maximum price, minimum and average of all the order lines including the article "Bravia KDL-32EX402"</h3><blockquote><pre>select MAX(price) MaxPrecio, MIN(price) MinPrecio, AVG(price) PrecioMedio 
+from linorder l, article a 
+where a.cod=l.article and a.name='Bravia KDL-32EX402';</pre><hr></blockquote><br><h3>T08.016- Total amount that has been requested of the articles starting with "UE22"</h3><blockquote><pre>select SUM(amount) amountTotal 
+from linorder, article 
+where article=cod and name like 'UE22%';</pre><hr></blockquote><br><h3>T08.017- Average price of the articles included in the order line number 4, rounded to 3 decimals.</h3><blockquote><pre>select round(avg(price),3) PrecioMedio 
+from linorder 
+where line=4;</pre><hr></blockquote><br><h3>T08.018- Number of order, name, telephone and email of the user of order (or orders) that<br>
+contains order line which unitary price is equal to the highest price per<br>
+article among all the second lines of all the orders.</h3><blockquote><pre>select l.numPedido, name, telephone, email 
+from uuser u, orrder p, linorder l 
+where l.numPedido=p.numPedido 
+ &nbsp;and p.user=u.email 
+ &nbsp;and price=(select MAX(price) from linorder where line=2);</pre><hr></blockquote><br><h3>T08.019- Difference between the maximum and the minimum price of order number 30.</h3><blockquote><pre>select (MAX(price)-MIN(price)) DiferenciaPrecios 
+from linorder 
+where numPedido=30;</pre><hr></blockquote><br><h3>T08.020- Code, name, and RRP of the article with the most amount in stock.</h3><blockquote><pre>select cod,name,rrp 
+from article,stock 
+where cod=article 
+  and available = (select MAX(available) from stock);</pre><hr></blockquote><br><h3>T08.021- Birthday of the oldest user.</h3><blockquote><pre>select MIN(birthday) from uuser;</pre><hr></blockquote><br><h3>T08.022- Get in a single query, how meny rows are there in the article table, and how many of them has value in the brand column and how many distinct brands are there in the table.</h3><blockquote><pre>select count(*) filas, count(brand) conbrand, count(distinct brand) brands from article;</pre><hr></blockquote><br><h3>T08.023- Code, name and brand of the most expensive article.</h3><blockquote><pre>select cod, name, brand 
+from article 
+where rrp = (select max(rrp) from article);</pre><blockquote>Alternative: <br><pre>select cod, name, brand 
+from article 
+where rpp &gt;= all (select rpp from article);</pre></blockquote><hr></blockquote><br><h3>T08.024- Code, name and rrp of the most expensive camera between the reflex type cameras</h3><blockquote><pre>select a.cod, name, rrp
+from article a, camera c
+where a.cod=c.cod
+and type like '%reflex%'
+and rrp=(
+    select max(rrp) 
+    from article a, camera c 
+    where a.cod=c.cod and type like '%reflex%');</pre><blockquote>Alternative: <br><pre>select a.cod, name, rpp
+from article a, camera c
+where a.cod=c.cod and type like'%réflex%'
+and rpp &gt;= all (select rpp from article a, camera c
+                where a.cod=c.cod and type like'%réflex%');
+
+</pre></blockquote><hr></blockquote><br><h3>T08.025- Code, name and availability of the articles with less availability between the ones that are available in 24 hours.</h3><blockquote><pre>select cod,name,available 
+from stock, article 
+where cod=article 
+  and delivery='24 horas'
+  and available=(select min(available) 
+                   from stock 
+                   where delivery='24 horas');</pre><blockquote>Alternative: <br><pre>select cod, name, available
+from stock, article 
+where cod=article 
+and delivery ='24 horas'
+and available &lt;=all (select available
+                      from stock
+                      where delivery='24 horas');
+
+</pre></blockquote><hr></blockquote><br><h3>T08.026- Number of order and article with the lowest price line order.</h3><blockquote><pre>select numOrder, article 
+from linorder 
+where price = (select min(price) from linorder);
+</pre><hr></blockquote><br><h3>T08.027- Lines of order and name of the articles of those lines, including a greater amount of articles of the rest of them.</h3><blockquote><pre>select line, numOrder 
+from linorder 
+where amount = (select max(amount) from linorder);
+</pre><blockquote>Alternative: <br><pre>select linea, numOrder 
+from linorder 
+where amount &gt;= all (select amount from linorder);
+</pre></blockquote><hr></blockquote><br><h3>T08.028- Lines of order and name of the articles of those lines, if the prices in those lines is not less than all the known lines.</h3><blockquote><pre>select distinct line, name 
+from article a, linorder l 
+where a.cod=l.article 
+   and price &gt; (select min(price) from linorder);</pre><blockquote>Alternative: <br><pre>select distinct linea, name 
+from article a, linorder l 
+where a.cod=l.article 
+   and importe &gt; any (select importe from linorder);</pre></blockquote><hr></blockquote><br><h3>T08.029- Name, price and brand of the articles with  the most availability of stock</h3><blockquote><pre>select name, rrp, brand 
+from article a, stock s 
+where a.cod=s.article 
+   and s.available = (select max(available) from stock);
+</pre><blockquote>Alternative: <br><pre>select name, rpp, brand 
+from article a, stock s 
+where a.cod=s.article 
+  and s.available &gt;=all (select available from stock);
+</pre></blockquote><hr></blockquote><br><h3>T08.030- Name, price and brand of the articles that they do not have the most availability of stock</h3><blockquote><pre>select name, rrp, brand 
+from article a, stock s 
+where a.cod=s.article 
+   and s.available &lt;&gt; (select max(available) from stock);
+</pre><blockquote>Alternative: <br><pre>select name, rpp, brand 
+from article a, stock s 
+where a.cod=s.article 
+   and s.available &lt; any (select available from stock);
+</pre></blockquote><hr></blockquote><br>    
+
+</body></html>

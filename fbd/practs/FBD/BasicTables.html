@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T06&desde=1&hasta=999&lang=eng -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
+        <title>T06 Soluciones a los ejercicios</title>
+    </head>
+    <body>
+        <h3>Solutions</h3><p><a href="https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T06&amp;desde=1&amp;hasta=999&amp;lang=es">Español</a></p><h3>T06.001- Create a table with name "xx" with 2 columns, col1 with integer type and col2 with char(3) type, and define col1 as primary key.</h3><blockquote><pre>create table XX (col1 integer, col2 char(3), primary key (col1))</pre><hr></blockquote><br><h3>T06.002- Select the table</h3><blockquote><pre>select * from xx</pre><hr></blockquote><br><h3>T06.003- Insert in the table the row (1,'AA')</h3><blockquote><pre>insert into xx values (1,'AA')</pre><hr></blockquote><br><h3>T06.004- Insert in the table the row ('BB',2)</h3><blockquote><pre>insert into xx values ('BB',2)</pre><hr></blockquote><br><h3>T06.005- Insert in the table the row (2,'BB')</h3><blockquote><pre>insert into xx values (2,'BB')</pre><hr></blockquote><br><h3>T06.006- Select the table XX</h3><blockquote><pre>select * from xx</pre><hr></blockquote><br><h3>T06.007- Close the session and identify again ("close and sign in again" or "disconnect" and "connect"). Next select again XX. Actually, if you have this clear it is not necessary for you to do it. We pretend to  check the persistency of the created table and the data it contains: closing the session do not delete the stored data. Only drop table can eliminate the table from the catalog.</h3><blockquote><pre>select * from xx</pre><hr></blockquote><br><h3>T06.008- Delete the table XX</h3><blockquote><pre>drop table xx</pre><hr></blockquote><br><h3>T06.009- Create a table YY with 3 columns<br>
+col1(integer),<br>
+col2(char(2)) and<br>
+col3(varchar(10)),<br>
+and primary key (col1, col2)</h3><blockquote><pre>create table yy (
+col1 integer,
+col2 char(2),
+col3 varchar(10),
+primary key (col1, col2))</pre><hr></blockquote><br><h3>T06.010- Insert the following data and query the table in order to see the stored data<br>
+(1,'AA','first')<br>
+(2,'AA','second')<br>
+(2,'BB','third')<br>
+(1,'AA','fourth') <br>
+(NULL,NULL,'fifth')<br>
+(NULL,'CC','sixth') <br>
+(3,NULL,'seventh') <br>
+(0,'','eighth') --0, empty string, 'eighth' <br>
+(3,'AA',NULL)</h3><blockquote><pre>insert into yy values (1,'AA','primera');
+insert into yy values (2,'AA','segunda');
+insert into yy values (2,'BB','tercera');
+insert into yy values (1,'AA','cuarta');
+insert into yy values (NULL,NULL,'quinta');
+insert into yy values (NULL,'CC','sexta');
+insert into yy values (3,NULL,'séptima');
+insert into yy values (0,'','octava');
+insert into yy values (3,'AA',NULL);</pre><hr></blockquote><br><h3>T06.011- Execute the following: <br>
+create table T1(a int,b int,c int,  <br>
+primary key(a));<br>
+<br>
+create table T2(a int,d int,e int, <br>
+primary key(d),foreign key(a) references T1(a)); <br>
+and check, looking for the reason it fails, the result of the following statements: <br>
+a)insert in T1(1,10,100) <br>
+b)insert in T1(NULL,20,NULL)<br>
+c)insert in T1(2,20,NULL)  <br>
+d)insert in T1(3,NULL,300)  <br>
+e)insert in T2(2,NULL,NULL) <br>
+f) Insert in T2(2,20,NULL) <br>
+g) Insert in T1(1,20,200)  <br>
+h) Insert in T2(4,10,100)  <br>
+i) Insert in T2(2,30,230)</h3><blockquote><pre>insert into T1 values (1,10,100); -- a
+insert into T1 values (NULL,20,NULL); -- b fail
+insert into T1 values (2,20,NULL); -- c
+insert into T1 values (3,NULL,300); -- d
+insert into T2 values (2,NULL,NULL); -- e fail
+insert into T2 values (2,20,NULL); -- f
+insert into T1 values (1,20,200); -- g fail
+insert into T2 values (4,10,100); -- h fail
+insert into T2 values (2,30,230);-- i</pre><hr></blockquote><br><h3>T06.012- Continue the previous<br>
+j) update T1(1,10,10) to (2,10,100)<br>
+k) update T1(1,1,100) to (5,10,100)<br>
+l) update T2(2,2,NULL) to  (2,20,220)<br>
+m) update T2(2,2,220) to (5,20,220) <br>
+n) update T2(5,0,220) to (2,10,100) <br>
+o) update T1(2,2,200) to (6,60,600) <br>
+p)update T1(3,NULL,300) to (7,70,700)<br>
+q) update T2(2,10,00) to (7,10,100) <br>
+r) update T2(2,3,230) to (7,30,230) <br>
+s) update T1(2,0,NULL) to (6,60,600)</h3><blockquote><pre>update T1 set a=2 where a=1; -- j falla
+update T1 set a=5 where a=1; -- k
+update T2 set e=220 where d=20; -- l
+update T2 set a=5 where d=20; -- m
+update T2 set a=2,d=10,e=100 where d=20; -- n
+update T1 set a=6,b=60,c=600 where a=2; -- o falla
+update T1 set a=7,b=70,c=700 where a=3; -- p
+update T2 set a=7 where d=10; -- q
+update T2 set a=7 where d=30; -- r
+update T1 set a=6,b=60,c=600 where a=2; -- s</pre><hr></blockquote><br><h3>T06.013- Continue the previous <br>
+t) delete T2(7,30,230)<br>
+u) delete T1(7,70,700)<br>
+v) delete T1(5,10,100)<br>
+w) delete T2(7,10,100)<br>
+x) delete T1(7,70,700)<br>
+y) delete T1(6,60,600)<br>
+</h3><blockquote><pre>delete from T2 where d=30; -- t
+delete from T1 where a=7; -- u falla
+delete from T1 where a=5; -- v 
+delete from T2 where d=10; -- w
+delete from T1 where a=7; -- x ahora sí
+delete from T1 where a=6; -- y</pre><hr></blockquote><br>    
+
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T07&desde=1&hasta=999&lang=eng -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
+        <title>T07 Soluciones a los ejercicios</title>
+    </head>
+    <body>
+        <h3>Solutions</h3><p><a href="https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T07&amp;desde=1&amp;hasta=999&amp;lang=es">Español</a></p><h3>T07.001- Create the following tables:<br>
+TA (a int, b int) PK(a)<br>
+TB (c int, d int) PK(c) FK(d) &gt;&gt; TA (delete: propagate, update:propagate)<br>
+TC (e int, f int) PK(e) FK(f) &gt;&gt; TB (delete:propagate, update: propagate)</h3><blockquote><pre>create table TA(a int, b int, primary key(a));
+
+create table TB(c int, d int, primary key(c), 
+  foreign key (d) references TA(a) on delete cascade on update cascade);
+
+create table TC(e int, f int, primary key(e), 
+  foreign key (f) references TB(c) on delete cascade on update cascade);
+</pre><hr></blockquote><br><h3>T07.002- Insert the following data<br>
+TA(1,10)<br>
+TA(2,20)<br>
+TA(3,30)<br>
+TB(100,1)<br>
+TB(200,1)<br>
+TB(300,2)<br>
+TB(400,NULL)<br>
+TC(1000,100)<br>
+TC(2000,100)<br>
+TC(3000,NULL)</h3><blockquote><pre>insert into TA values (1,10);
+insert into TA values (2,20);
+insert into TA values (3,30);
+insert into TB values (100,1);
+insert into TB values (200,1);
+insert into TB values (300,2);
+insert into TB values (400,NULL);
+insert into TC values (1000,100);
+insert into TC values (2000,100);
+insert into TC values (3000,NULL);</pre><hr></blockquote><br><h3>T07.003- Delete TA(2,20) and check the changes that have been produced in the 3 tables</h3><blockquote><pre>delete from TA where a = 2;</pre><hr></blockquote><br><h3>T07.004- Update TA(1,10) to TA(15,10) and check the changes in the 3 tables.</h3><blockquote><pre>update TA set a=15 where a = 1;</pre><hr></blockquote><br><h3>T07.005- Delete TC(2000,100) and check the changes in the 3 tables.</h3><blockquote><pre>delete from TC where e=2000;</pre><hr></blockquote><br><h3>T07.006- Delete TA(3,30) and check the changes in the 3 tables.</h3><blockquote><pre>delete from TA where a=3;</pre><hr></blockquote><br><h3>T07.007- Delete TB(100,15) and check the changes in the 3 tables.</h3><blockquote><pre>delete from TB where c=100;</pre><hr></blockquote><br><h3>T07.008- Delete TC(3000,NULL) and check the changes in the 3 tables.</h3><blockquote><pre>delete from TC where e=3000;</pre><hr></blockquote><br><h3>T07.009- Delete TB(400,NULL) and check the changes in the 3 tables.</h3><blockquote><pre>delete from TB where c=400;</pre><hr></blockquote><br><h3>T07.010- Delete TA(15,10) and check the changes in the three tables: Are the 3 tables empty?</h3><blockquote><pre>delete from TA where a=15;</pre><hr></blockquote><br><h3>T07.011- Create the tables again:<br>
+TA (a int, b int) PK(a)<br>
+TB (c int, d int) PK(c) FK(d) &gt;&gt; TA <br>
+  (delete set null, update set null)<br>
+TC (e int, f int) PK(e) FK(f) &gt;&gt; TB <br>
+  (delete set null, update set null)</h3><blockquote><pre>drop table TC;
+drop table TB;
+drop table TA;
+
+create table TA(a int, b int, primary key(a));
+
+create table TB(c int, d int, primary key(c), 
+  foreign key (d) references TA(a) 
+    on delete set null on update set null);
+
+create table TC(e int, f int, primary key(e), 
+  foreign key (f) references TB(c) 
+    on delete set null on update set null);
+</pre><hr></blockquote><br><h3>T07.012- Fill the tables again:<br>
+TA(1,10)<br>
+TA(2,20)<br>
+TA(3,30)<br>
+TB(100,1)<br>
+TB(200,1)<br>
+TB(300,2)<br>
+TB(400,NULL)<br>
+TC(1000,100)<br>
+TC(2000,100)<br>
+TC(3000,NULL)</h3><blockquote><pre>insert into TA values (1,10);
+insert into TA values (2,20);
+insert into TA values (3,30);
+insert into TB values (100,1);
+insert into TB values (200,1);
+insert into TB values (300,2);
+insert into TB values (400,NULL);
+insert into TC values (1000,100);
+insert into TC values (2000,100);
+insert into TC values (3000,NULL);</pre><hr></blockquote><br><h3>T07.013- Execute the following statements:<br>
+Delete TA(2,20)<br>
+Update TA(1,10) to TA(15,10)<br>
+Update TB(100,NULL) to TB(150,NULL)<br>
+Is there any value in the foreign key distinct to NULL?</h3><blockquote><pre>delete from TA where a = 2;
+update TA set a=15 where a = 1;
+update TB set c=150 where c = 100;</pre><hr></blockquote><br><h3>T07.014- Create the tables again:<br>
+TA (a int, b int) PK(a)<br>
+TB (c int, d int) PK(c) FK(d) &gt;&gt; TA (delete propagate)<br>
+TC (e int, f int) PK(e) FK(f) &gt;&gt; TB (update set null)<br>
+TA(1,10)<br>
+TA(2,20)<br>
+TA(3,30)<br>
+TB(100,1)<br>
+TB(200,1)<br>
+TB(300,2)<br>
+TB(400,NULL)<br>
+TC(1000,100)<br>
+TC(2000,100)<br>
+TC(3000,NULL)</h3><blockquote><pre>drop table TC;
+drop table TB;
+drop table TA;
+
+create table TA(a int, b int, primary key(a));
+
+create table TB(c int, d int, primary key(c), 
+  foreign key (d) references TA(a) 
+    on delete cascade);
+
+create table TC(e int, f int, primary key(e), 
+  foreign key (f) references TB(c) 
+    on update set null);
+insert into TA values (1,10);
+insert into TA values (2,20);
+insert into TA values (3,30);
+insert into TB values (100,1);
+insert into TB values (200,1);
+insert into TB values (300,2);
+insert into TB values (400,NULL);
+insert into TC values (1000,100);
+insert into TC values (2000,100);
+insert into TC values (3000,NULL);</pre><hr></blockquote><br><h3>T07.015- Delete TA(1,10): What happens?</h3><blockquote><pre>delete from TA where a=1;</pre><hr></blockquote><br><h3>T07.016- Delete TA(2,20): What happens?</h3><blockquote><pre>delete from TA where a=2;</pre><hr></blockquote><br><h3>T07.017- Update TB(100,1) to TB(170,1): what happens?</h3><blockquote><pre>update TB set c=170 where c=100;</pre><hr></blockquote><br><h3>T07.018- Try to delete TA(1,10) again: Why now is it possible?</h3><blockquote><pre>delete from TA where a=1;</pre><hr></blockquote><br>    
+
+</body></html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T05&desde=1&hasta=999&lang=eng -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
+        <title>T05 Soluciones a los ejercicios</title>
+    </head>
+    <body>
+        <h3>Solutions</h3><p><a href="https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T05&amp;desde=1&amp;hasta=999&amp;lang=es">Español</a></p><h3>T05.001- Number of order and identification, surnames and name of the user that request the order (using join).</h3><blockquote><pre>select numOrder,user,surnames,name 
+from orrder join uuser on (user=email) 
+order by surnames,name;</pre><blockquote>Alternative: <br><pre>select numOrder,user,surnames,name  
+from orrder, user 
+where user=email;</pre></blockquote><hr></blockquote><br><h3>T05.002- Number of order and identification, surnames and name of the user that requests the order, and name of the town of the user (using join).</h3><blockquote><pre>select numOrder,user,surnames,u.name,l.town 
+from orrder 
+join uuser u on (user=email) 
+join locality l on (l.codm=u.town and l.province=u.province)
+order by surnames,u.name;</pre><hr></blockquote><br><h3>T05.003- Number of order and identification, surnames and name of the user that requests the order, name of the town and name of the province of the user (using join).</h3><blockquote><pre>select numOrder,user,surnames,u.name,l.town,p.name 
+from orrder join uuser u on (user=email) 
+join locality l on (l.codm=u.town and l.province=u.province)
+join province p on (l.province=codp)
+order by surnames,u.name;</pre><hr></blockquote><br><h3>T05.004- Name of the province and name of the town sorted by province and town (using join) of the provinces of Aragón and the towns whose name starts with "B".</h3><blockquote><pre>select name,town from province join locality on (province=codp) 
+where name in ('huesca','zaragoza','teruel') 
+  and town like 'B%'  order by name,town;</pre><hr></blockquote><br><h3>T05.005- Surnames and name of the users, and if they have, orders they requested.</h3><blockquote><pre>select surnames,name,numOrder 
+from uuser left join orrder on (email=user);</pre><hr></blockquote><br><h3>T05.006- Code and name of the articles, and if they are cameras, also show the resolution and sensor.</h3><blockquote><pre>select a.cod, name, resolution, sensor
+from article a 
+left join camera c on (a.cod = c.cod);
+</pre><hr></blockquote><br><h3>T05.007- Code, name and retail price of the articles, and if they are lenses show all their data.</h3><blockquote><pre>select a.cod, name, rrp, o.*
+from article a 
+left join lens o on (a.cod = o.cod);</pre><hr></blockquote><br><h3>T05.008- Show the baskets of 2010 together with the name of the article being referred by it and its retail price.</h3><blockquote><pre>select c.*, name, rrp
+from basket c
+join article on (cod=article)
+where year(date) = 2010;
+
+</pre><blockquote>Alternative: <br><pre>select c.*, name, rpp
+from basket c
+join article on (cod=article and year(date) = 2010);</pre></blockquote><hr></blockquote><br><h3>T05.009- Show all the information of articles. If some of them appear in a basket of 2010 show this information.</h3><blockquote><pre>select a.*, c.*
+from article a 
+left join basket c on (article=cod and year(date) = 2010);
+</pre><hr></blockquote><br><h3>T05.010- Availability of the stock of each camera together with the code and the resolution of all the cameras.</h3><blockquote><pre>select s.available , c.cod, c.resolution
+from stock s 
+right join camera c on (cod=article);</pre><hr></blockquote><br><h3>T05.011- Code and name of the articles that have no brand.</h3><blockquote><pre>select cod, name
+from article
+where brand is null;
+</pre><hr></blockquote><br><h3>T05.012- Code, name and brand of all the articles,  having brand or no.</h3><blockquote><pre>select cod, name, brand
+from article;</pre><hr></blockquote><br><h3>T05.013- Code, name, brand and company in charge of all the articles. If any article has no brand, it must appear in the listing with this information empty.</h3><blockquote><pre>select cod, name, a.brand, empresa
+from article a 
+left join brand m on (a.brand = m.brand);
+</pre><hr></blockquote><br><h3>T05.014- Information of all the users from the Comunidad Valenciana whose name starts with 'P' including the delivery address in case they have one.</h3><blockquote><pre>select u.*, d.*
+from uuser u 
+join province p on (u.province = codp)
+left join deliveryaddress d on (d.email=u.email)
+where (p.name like '%Alicante%' 
+    or p.name like '%Valencia%' 
+    or p.name like '%Castell%') 
+  and u.name like 'P%';</pre><blockquote>Alternative: <br><pre>select u.*, d.*
+from uuser u 
+join province p on (u.province = codp)
+left join deliveryaddress d on (d.email=u.email)
+where (p.name like '%Alicante%' 
+    or p.name like '%Valencia%' 
+    or p.name like '%Castell%') 
+and u.name like 'P%'; 
+</pre></blockquote><hr></blockquote><br><h3>T05.015- Code and name of the articles, and pack code in case they belong to any pack.</h3><blockquote><pre>select cod, name, pack
+from article 
+left join part_of on (cod=article);</pre><hr></blockquote><br><h3>T05.016- Users and orders they have done.</h3><blockquote><pre>select u.*, p.*
+from uuser u, orrder p
+where u.email=p.uuser;
+
+</pre><blockquote>Alternative: <br><pre>select *
+from uuser u
+join orrder p on (u.email=p.user);
+</pre></blockquote><hr></blockquote><br><h3>T05.017- Information of those users from the Comunidad Valenciana (codes 03, 12 and 46) whose name starts by 'P' and they have delivery address but showing, at the right side, all the delivery address of the database.</h3><blockquote><pre>select u.*, d.*
+from uuser u 
+right join deliveryaddress d 
+   on (d.email=u.email 
+   and u.province in ('46','03','12')
+   and u.name like 'P%'); </pre><hr></blockquote><br>    
+
+</body></html>

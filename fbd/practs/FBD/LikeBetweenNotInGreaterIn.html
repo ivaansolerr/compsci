@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T03&desde=1&hasta=999&lang=eng -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
+        <title>T03 Soluciones a los ejercicios</title>
+    </head>
+    <body>
+        <h3>Solutions</h3><p><a href="https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T03&amp;desde=1&amp;hasta=999&amp;lang=es">Español</a></p><h3>T03.001- Code of the articles belonging to a pack.</h3><blockquote><pre>select article
+from part_of;</pre><hr></blockquote><br><h3>T03.002- Numer of pack, name and price of it.</h3><blockquote><pre>select p.cod,name,rrp 
+from article a, pack p
+where a.cod = p.cod</pre><hr></blockquote><br><h3>T03.003- Code, name and brand of the articles that belong to any pack.</h3><blockquote><pre>select article,name,brand
+from article, part_of
+where cod = article</pre><hr></blockquote><br><h3>T03.004- Code of Alicante province</h3><blockquote><pre>select codp from province 
+where name like 'Alicante%';</pre><hr></blockquote><br><h3>T03.005- Get the code, name and rrp of the articles whose brand starts from S</h3><blockquote><pre>select cod, name, rrp from article where brand like 'S%'</pre><hr></blockquote><br><h3>T03.006- Information about the users whose email is from eps.</h3><blockquote><pre>select * from uuser where email like '%@eps.%</pre><hr></blockquote><br><h3>T03.007- Code, name and resolution of the tvs whose screen is not between 22 and 42.</h3><blockquote><pre>select a.cod, name, resolution 
+from article a, tv 
+where a.cod=tv.cod and screen not between 22 and 42;
+</pre><hr></blockquote><br><h3>T03.008- Code and name of the televisions whose panel is LED type and its price is not greater than 1000 euros</h3><blockquote><pre>select t.cod, name from tv t, article a where t.cod=a.cod and panel like '%LED%' and rrp&lt;=1000;
+</pre><hr></blockquote><br><h3>T03.009- Email of the users whose postcode is not neither 02012, 02018 nor 02032.</h3><blockquote><pre>select email from uuser
+where postcode not in ('02012','02018','02032');
+</pre><hr></blockquote><br><h3>T03.010- Code and name of the packs whose belonging articles are known, without duplicates.</h3><blockquote><pre>select distinct cod, name 
+from  article, part_of 
+where pack=cod;
+</pre><hr></blockquote><br><h3>T03.011- Is there any article in basket that is out of stock?</h3><blockquote><pre>select c.article,c.uuser,c.date,s.article stock,s.available,s.delivery 
+from basket c, stock s 
+where c.article=s.article 
+  and delivery='Unlisted';
+</pre><hr></blockquote><br><h3>T03.012- Code, name and rrp of the compact type cameras?</h3><blockquote><pre>select a.cod, name, rrp
+from article a, camera c
+where a.cod=c.cod and type like'%compact%';
+</pre><hr></blockquote><br><h3>T03.013- Code, name and difference between rrp and price of articles that have been requested at any order with price distinct to rrp.</h3><blockquote><pre>select cod, name, rrp-price
+from article, linorder
+where cod=article and rrp&lt;&gt;price;
+</pre><hr></blockquote><br><h3>T03.014- Number of order, date and name and surnames of users that request the order, for all those orders requested by users with MARTINEZ surname</h3><blockquote><pre>select numOrder, date, name, surnames 
+from orrder, uuser 
+where user=email and surnames like'%MARTINEZ%'
+</pre><hr></blockquote><br><h3>T03.016- Name, brand and resolution of cameras that have been never ordered.</h3><blockquote><pre>select name, brand, resolution 
+from article a, camera c
+where a.cod=c.cod and 
+c.cod not in (select article from linorder);
+</pre><hr></blockquote><br><h3>T03.017- Code, name, type and brand of the cameras with brand Nikon, LG or Sigma</h3><blockquote><pre>select a.cod, name, type, brand 
+from article a, camera c
+where a.cod=c.cod and brand in ('NIKON','LG','SIGMA');
+</pre><hr></blockquote><br><h3>T03.019- Brands from which there are no televisions in our DB</h3><blockquote><pre>select brand from brand 
+where brand not in (select brand
+                    from article a, tv t
+                    where a.cod=t.cod);
+</pre><blockquote>Alternative: <br><pre>SELECT brand 
+FROM brand m 
+WHERE NOT EXISTS 
+  (SELECT 1 FROM article a, tv t 
+   where a.cod=t.cod and a.brand=m.brand);
+</pre></blockquote><hr></blockquote><br><h3>T03.021- Name of the articles whose name cointains the word EOS</h3><blockquote><pre>select name from article where name like '%EOS%';
+</pre><hr></blockquote><br><h3>T03.022- Type and focal of the lenses that are used in a Canon Camera of any model.</h3><blockquote><pre>select type, focaL from lens where frame like 'Canon%';
+</pre><hr></blockquote><br><h3>T03.023- Name of the articles whose price is greater than 100 but less or equal to 200.</h3><blockquote><pre>select name from article where rrp&gt;100 and rrp&lt;=200;</pre><hr></blockquote><br><h3>T03.024- Name of the articles whose prices is greater or equal to 100 but less or equal to 300.</h3><blockquote><pre>select name from article where rrp between 100 and 300;
+</pre><hr></blockquote><br><h3>T03.025- Name of the cameras whose brand is not starting by S.</h3><blockquote><pre>select name from article a, camera c where a.cod=c.cod and brand not like 'S%';</pre><hr></blockquote><br><h3>T03.026- Postal address of the users whose dni ends with B, L or P.</h3><blockquote><pre>select email from uuser where dni like '%B' or dni like '%L' or dni like '%P';</pre><hr></blockquote><br><h3>T03.027- Code of the tvs that have an LCD or LED panel</h3><blockquote><pre>select cod from tv where panel like '%LCD%' or panel like '%LED%';
+</pre><hr></blockquote><br><h3>T03.029- Name of the televisions with a screen bigger that the one of television with code A0686.</h3><blockquote><pre>select name 
+from article a, tv t 
+where a.cod=t.cod 
+  and screen &gt; (select screen from tv where cod ='A0686');
+</pre><hr></blockquote><br><h3>T03.035- Name of the articles that have been selected at any basket with date between 01.11.2010 and 31.12.2010</h3><blockquote><pre>select distinct name 
+from article a, basket c 
+where a.cod=c.article 
+   and c.date between '2010-11-01' and '2010-12-31';
+</pre><hr></blockquote><br><h3>T03.036- Name of the articles that have been selected at any basket by users of the Valencia or Alicante provinces.</h3><blockquote><pre>select distinct a.name 
+from article a, basket c, uuser u 
+where a.cod=c.article 
+ &nbsp;and c.user=u.email 
+ &nbsp;and u.province in 
+ &nbsp; &nbsp; (select codp 
+ &nbsp; &nbsp; &nbsp;from province 
+ &nbsp; &nbsp; &nbsp;where name like 'Alicante%' or name like 'Valencia%');
+</pre><hr></blockquote><br><h3>T03.037- Identifying number of orders in which articles with a price lower than its rrp are included. No duplicates.</h3><blockquote><pre>select distinct numOrder 
+from linorder l, article a 
+where l.article=a.cod and l.price &lt; a.rrp;</pre><hr></blockquote><br><h3>T03.038- Number of pack, name and price of it, and code, name and brand of the articles of that pack.</h3><blockquote><pre>select a1.cod, a1.name, a1.rrp, a2.cod art2, a2.name name2, a2.brand
+from article a1, part_of pp, article a2
+where pp.pack = a1.cod
+and pp.article = a2.cod</pre><hr></blockquote><br>    
+
+</body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T04B&desde=1&hasta=999&lang=eng -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
+        <title>T04B Soluciones a los ejercicios</title>
+    </head>
+    <body>
+        <h3>Solutions</h3><p><a href="https://bbdd.dlsi.ua.es/FBDweb/SQLf/dar.php?sesion=T04B&amp;desde=1&amp;hasta=999&amp;lang=es">Español</a></p><h3>T04B.001- Orders requested at 13.9.2010 (this format is compulsory in the comparison)</h3><blockquote><pre>select * from orrder 
+where date = str_to_date('13.9.2010','%d.%c.%Y');</pre><hr></blockquote><br><h3>T04B.002- 31st February 2011 in format dd/mm/aaaa</h3><blockquote><pre>select date_format('2011-02-31','%d/%m/%Y') ladate;</pre><hr></blockquote><br><h3>T04B.003- 21st February 2011 in that same format</h3><blockquote><pre>select date_format('2011-02-21','%D %M %Y') ladate;</pre><hr></blockquote><br><h3>T04B.004- Number and date of the orders requested at 13.9.2010 (this format is compulsory in the comparison and the outpul)</h3><blockquote><pre>select numOrder, date_format(date,'%d.%c.%Y') date 
+from orrder 
+where date = str_to_date('13.9.2010','%d.%c.%Y');</pre><hr></blockquote><br><h3>T04B.005- Number, date (format dd.mm.aa) and user of orders descending sorted by date and ascending by client.</h3><blockquote><pre>select numOrder, date_format(date,'%d.%m.%y') ladate, user
+from orrder 
+order by date desc, user;</pre><hr></blockquote><br><h3>T04B.006- Information about the users younger than 25 years old.</h3><blockquote><pre>select * from uuser 
+where year(now())-year(birthday)&lt;25;
+</pre><hr></blockquote><br><h3>T04B.007- All the information of orders requested 3rd March or 27th October 2010, and requested by users of the domain "cazurren"</h3><blockquote><pre>select * from orrder 
+where (date = '2010-03-03' or date = '2010-10-27') 
+ &nbsp; &nbsp; &nbsp; and user like '%@cazurren.%';</pre><hr></blockquote><br><h3>T04B.008- Email and amount of days past from the orders requested by each user until the date of each article in his/her basket at this moment. Avoid duplicates.</h3><blockquote><pre>select distinct c.user, datediff(c.date,p.date) dias 
+from basket c, orrder p, linorder l 
+where c.user=p.user 
+and l.numOrder=p.numOrder 
+and l.article = c.article;</pre><hr></blockquote><br><h3>T04B.009- Codes of the articles requested in orders of September 2010, and week of the year (the week starting on Monday) and year of the order, sorted by week.</h3><blockquote><pre>select article, date_format(date,'%u') semana, year(date) año
+from linorder l, orrder p
+where l.numOrder=p.numOrder 
+  and month(date)=9 and year(date)=2010  
+order by semana;</pre><hr></blockquote><br><h3>T04B.010- Number of order, user and date (dd/mm/aaaa) for orders requested during the week of the 7th November 2010.</h3><blockquote><pre>select numOrder, uuser, date_format(date,'%d/%m/%Y') cuando
+from orrder
+where year(date) = 2010 and date_format(date,'%u')=date_format('2010-11-07','%u');</pre><blockquote>Alternative: <br><pre>select numOrder, user, date_format(date,'%d/%m/%Y') cuando
+from orrder
+where date_format(date,'%u')=date_format(str_to_date('10/11/07','%y/%m/%d'),'%u');
+</pre></blockquote><hr></blockquote><br><h3>T04B.011- Name, surnames and age (approx.) of the users of the domain "dlsi.ua.es", descending sorted by age.</h3><blockquote><pre>select name, surnames, year(now())-year(birthday) edad 
+from uuser
+where email like '%@dlsi.ua.es'
+order by edad desc; 
+</pre><hr></blockquote><br><h3>T04B.012- Email and amount of days past from the orders requested by each user until the date of each own basket. Avoid duplicates.</h3><blockquote><pre>select distinct c.uuser, datediff(c.date,p.date) dias 
+from basket c, orrder p 
+where c.uuser=p.uuser;</pre><hr></blockquote><br><h3>T04B.013- Code, name, panel and screen of the televisions that have not been requested during this year and not in the last six month of last year.</h3><blockquote><pre>select a.cod, name, panel, screen
+from article a, tv 
+where a.cod=tv.cod 
+   and a.cod not in (select article 
+                     from linorder l, orrder p
+                     where l.numOrder=p.numOrder
+                       and (
+                            (year(date)=year(now())-1 
+                             and month(date) between 7 and 12)
+                           ) or year(date)=year(now())
+                    );</pre><hr></blockquote><br>    
+
+</body></html>
