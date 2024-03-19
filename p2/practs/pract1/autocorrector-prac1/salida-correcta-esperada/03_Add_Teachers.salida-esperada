@@ -1,0 +1,35 @@
+1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter academic year: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter academic year: Enter teacher name: Enter nickname: Enter subject: Enter rating: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter academic year: Enter teacher name: ERROR: duplicated value
+Enter teacher name: ERROR: empty string
+1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: 

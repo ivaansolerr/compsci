@@ -1,0 +1,38 @@
+1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter academic year: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter academic year: Enter teacher name: Enter nickname: Enter subject: Enter rating: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter teacher name: Academic year: 2023
+Name: Sofia Vergara
+Nickname: Griselda
+Subject: Macroeconomia
+Rating: ***
+1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: 

@@ -1,0 +1,26 @@
+1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter academic year: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter academic year: ERROR: duplicated value
+Enter academic year: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: 

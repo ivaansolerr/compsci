@@ -1,0 +1,74 @@
+1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter academic year: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter academic year: Enter teacher name: Enter nickname: Enter subject: Enter rating: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter teacher name: Enter phrase: Enter date (year-month-day): Enter rating: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter teacher name: Enter phrase: Enter date (year-month-day): Enter rating: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter teacher name: Enter phrase: Enter date (year-month-day): Enter rating: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter teacher name: Enter phrase: Enter date (year-month-day): Enter rating: 1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: Enter teacher name: Academic year: 2023
+Name: Eduardo Smith
+Nickname: Cocobongo
+Subject: Metafisica II
+Rating: ****
+Phrase 1 (2021-2-10) [8]: Imaginemos una vaca esferica
+Phrase 2 [7]: El mejor ejemplo de nihilistas lo podemos encontrar en un gimnasio
+Phrase 3 (2021-2-14): Tolkien es como Rambo, pero en profesor de Oxford
+Phrase 4: Hasta yo tengo mi parte malvada. Voy a Ikea y me llevo el lapiz
+1- Add academic year
+2- Delete academic year
+3- Add teacher
+4- Delete teacher
+5- Show teacher
+6- Add phrase
+7- Summary
+q- Quit
+Option: 
