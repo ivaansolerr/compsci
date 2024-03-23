@@ -1,0 +1,31 @@
+nombreGrafo graph1
+NoDirigido
+NoPonderado
+numVertices    6
+numParaNumerarLosVertices    10
+v2  N 2  X 237  Y 102
+v4  N 4  X 253  Y 248
+v5  N 5  X 514  Y 84
+v7  N 7  X 496  Y 265
+v8  N 8  X 589  Y 172
+v9  N 9  X 159  Y 180
+verticesConNombre    false
+verticesAleatorios    false
+vertsConCoordenadas    false
+numAristas    8
+v9  N 9  X 159  Y 180    v2  N 2  X 237  Y 102    peso  MENOSUNO
+v9  N 9  X 159  Y 180    v4  N 4  X 253  Y 248    peso  MENOSUNO
+v4  N 4  X 253  Y 248    v2  N 2  X 237  Y 102    peso  MENOSUNO
+v8  N 8  X 589  Y 172    v7  N 7  X 496  Y 265    peso  MENOSUNO
+v7  N 7  X 496  Y 265    v5  N 5  X 514  Y 84    peso  MENOSUNO
+v5  N 5  X 514  Y 84    v8  N 8  X 589  Y 172    peso  MENOSUNO
+v2  N 2  X 237  Y 102    v5  N 5  X 514  Y 84    peso  MENOSUNO
+v8  N 8  X 589  Y 172    v8  N 8  X 589  Y 172    peso  MENOSUNO
+MatrizDeAdyacencia
+0  1  1  0  0  1  
+1  0  0  0  0  1  
+1  0  0  1  1  0  
+0  0  1  0  1  0  
+0  0  1  1  2  0  
+1  1  0  0  0  0  
+creadoConTablaActividades false
