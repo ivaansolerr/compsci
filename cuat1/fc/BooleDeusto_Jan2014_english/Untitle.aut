@@ -1,0 +1,104 @@
+[Caracteristicas]
+  Titulo: Untitle
+  Tipo: Mealy
+  Nº Estados: 5
+  Nº Trans: 14
+  Vars Entrada: 2
+      I0
+      E1
+  Vars Salida: 3
+      O0
+      S1
+      S2
+[Estados]
+  [E0]
+    Nombre: Esp A
+    Coord X: 272
+    Coord Y: 298
+  [E1]
+    Nombre: EspB-
+    Coord X: 319
+    Coord Y: 540
+  [E2]
+    Nombre: EspB+
+    Coord X: 438
+    Coord Y: 210
+  [E3]
+    Nombre: Res-
+    Coord X: 530
+    Coord Y: 563
+  [E4]
+    Nombre: Res+
+    Coord X: 642
+    Coord Y: 183
+[Transiciones]
+  [E0 - E0]
+    Coord X: 196
+    Coord Y: 271
+    Entrada: 00
+    Salida: 11X
+  [E0 - E1]
+    Coord X: 226
+    Coord Y: 444
+    Entrada: 10
+    Salida: 101
+  [E0 - E2]
+    Coord X: 321
+    Coord Y: 209
+    Entrada: 01
+    Salida: 100
+  [E2 - E2]
+    Coord X: 433
+    Coord Y: 130
+    Entrada: 01
+    Salida: 100
+  [E0 - E0]
+    Coord X: 348
+    Coord Y: 321
+    Entrada: 11
+    Salida: 11X
+  [E1 - E1]
+    Coord X: 295
+    Coord Y: 616
+    Entrada: 10
+    Salida: 101
+  [E1 - E3]
+    Coord X: 427
+    Coord Y: 636
+    Entrada: 11
+    Salida: 0X1
+  [E3 - E3]
+    Coord X: 594
+    Coord Y: 610
+    Entrada: 11
+    Salida: 0X1
+  [E2 - E4]
+    Coord X: 543
+    Coord Y: 151
+    Entrada: 11
+    Salida: 0X0
+  [E4 - E4]
+    Coord X: 679
+    Coord Y: 112
+    Entrada: 11
+    Salida: 0X0
+  [E4 - E2]
+    Coord X: 547
+    Coord Y: 192
+    Entrada: 01
+    Salida: 100
+  [E4 - E1]
+    Coord X: 646
+    Coord Y: 429
+    Entrada: 10
+    Salida: 101
+  [E3 - E1]
+    Coord X: 450
+    Coord Y: 566
+    Entrada: 10
+    Salida: 101
+  [E3 - E2]
+    Coord X: 547
+    Coord Y: 351
+    Entrada: 01
+    Salida: 100

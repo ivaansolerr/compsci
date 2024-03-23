@@ -1,0 +1,134 @@
+[Caracteristicas]
+  Titulo: Untitled
+  Tipo: Mealy
+  Nº Estados: 5
+  Nº Trans: 20
+  Vars Entrada: 2
+      I0
+      E1
+  Vars Salida: 3
+      O0
+      S1
+      S2
+[Estados]
+  [E0]
+    Nombre: A
+    Coord X: 267
+    Coord Y: 287
+  [E1]
+    Nombre: B-
+    Coord X: 315
+    Coord Y: 534
+  [E2]
+    Nombre: B+
+    Coord X: 430
+    Coord Y: 199
+  [E3]
+    Nombre: R-
+    Coord X: 525
+    Coord Y: 551
+  [E4]
+    Nombre: R+
+    Coord X: 639
+    Coord Y: 166
+[Transiciones]
+  [E0 - E0]
+    Coord X: 191
+    Coord Y: 260
+    Entrada: 00
+    Salida: 11X
+  [E0 - E1]
+    Coord X: 222
+    Coord Y: 436
+    Entrada: 10
+    Salida: 101
+  [E0 - E2]
+    Coord X: 315
+    Coord Y: 199
+    Entrada: 01
+    Salida: 100
+  [E2 - E2]
+    Coord X: 412
+    Coord Y: 121
+    Entrada: 01
+    Salida: 100
+  [E0 - E0]
+    Coord X: 343
+    Coord Y: 310
+    Entrada: 11
+    Salida: 11X
+  [E1 - E1]
+    Coord X: 291
+    Coord Y: 610
+    Entrada: 10
+    Salida: 101
+  [E1 - E3]
+    Coord X: 423
+    Coord Y: 627
+    Entrada: 11
+    Salida: 0X1
+  [E3 - E3]
+    Coord X: 480
+    Coord Y: 484
+    Entrada: 11
+    Salida: 001
+  [E2 - E4]
+    Coord X: 538
+    Coord Y: 138
+    Entrada: 11
+    Salida: 0X0
+  [E4 - E4]
+    Coord X: 698
+    Coord Y: 112
+    Entrada: 11
+    Salida: 000
+  [E4 - E2]
+    Coord X: 542
+    Coord Y: 179
+    Entrada: 01
+    Salida: 100
+  [E4 - E1]
+    Coord X: 643
+    Coord Y: 418
+    Entrada: 10
+    Salida: 101
+  [E3 - E1]
+    Coord X: 446
+    Coord Y: 557
+    Entrada: 10
+    Salida: 101
+  [E3 - E2]
+    Coord X: 541
+    Coord Y: 340
+    Entrada: 01
+    Salida: 100
+  [E2 - E2]
+    Coord X: 431
+    Coord Y: 278
+    Entrada: 00
+    Salida: 100
+  [E2 - E1]
+    Coord X: 355
+    Coord Y: 351
+    Entrada: 10
+    Salida: 101
+  [E1 - E1]
+    Coord X: 272
+    Coord Y: 466
+    Entrada: 00
+    Salida: 101
+  [E3 - E0]
+    Coord X: 404
+    Coord Y: 427
+    Entrada: 00
+    Salida: 11X
+  [E4 - E0]
+    Coord X: 521
+    Coord Y: 274
+    Entrada: 00
+    Salida: 11X
+  [E1 - E2]
+    Coord X: 411
+    Coord Y: 349
+    Entrada: 01
+    Salida: 100
