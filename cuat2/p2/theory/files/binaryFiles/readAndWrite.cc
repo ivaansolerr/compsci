@@ -14,20 +14,21 @@ struct TStudent{
     float avgMark;
 };
 
+
 int main(){
 
-    TStudent student;
-    TStudent s;
+    TStudent student, s;
+
     fstream fi;
 
     fi.open("myFile.dat", ios::in | ios::out | ios::binary);
 
     if (fi.is_open()){  
-        strcpy(student.name, "Maricón");
+        strcpy(student.name, "Maricon");
         student.group = 6;
         student.avgMark = 7.6;
          
-        fi.seekp(108, ios::beg);
+        fi.seekp(sizeof(student), ios::beg);
 
         // Writing 
         fi.write((const char *)&student, sizeof(student));
